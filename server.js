@@ -138,11 +138,12 @@ app.use((ctx, next) => {
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
             } 
+            console.log(files.length);
             //listing all files using forEach
-            files.forEach(function (file) {
+            //files.forEach(function (file) {
                 // Do whatever you want to do with the file
-                console.log(file); 
-            });
+            //    console.log(file); 
+            //});
         });
 
         fileName = '/' + subfolder + '/' + file.newFilename;
