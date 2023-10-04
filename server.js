@@ -131,14 +131,14 @@ app.use((ctx, next) => {
 
         fs.mkdirSync(uploadFolder);
         
-        fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
+        console.log('1111');
 
         fs.readdir(uploadFolder, (err, files) => {
             //handling error
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
             } 
-            console.log('1111');
+            console.log('222');
             console.log(files.length);
             //listing all files using forEach
             //files.forEach(function (file) {
@@ -146,6 +146,8 @@ app.use((ctx, next) => {
             //    console.log(file); 
             //});
         });
+
+        fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
 
         fileName = '/' + subfolder + '/' + file.newFilename;
     } catch (error) {
