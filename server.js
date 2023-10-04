@@ -138,6 +138,7 @@ app.use((ctx, next) => {
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
             } 
+            console.log('1111');
             console.log(files.length);
             //listing all files using forEach
             //files.forEach(function (file) {
