@@ -129,11 +129,11 @@ app.use(async (ctx, next) => {
         const uploadFolder = public + '/' + subfolder;
         console.log(uploadFolder);
 
-        await fs.mkdirSync(uploadFolder);
-        
+        const a = fs.mkdirSync(uploadFolder);
+        console.log(a);
         console.log('1111');
 
-        await fs.readdir(uploadFolder, (err, files) => {
+        fs.readdirSync(uploadFolder, (err, files) => {
             //handling error
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
@@ -147,7 +147,7 @@ app.use(async (ctx, next) => {
             //});
         });
 
-        await fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
+        fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
 
         fileName = '/' + subfolder + '/' + file.newFilename;
     } catch (error) {
