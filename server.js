@@ -129,25 +129,11 @@ app.use(async (ctx, next) => {
         const uploadFolder = public + '/' + subfolder;
         console.log(uploadFolder);
 
-        const a = fs.mkdirSync(uploadFolder);
-        console.log(a);
-        console.log('1111');
-
-        fs.readdirSync(uploadFolder, (err, files) => {
-            //handling error
-            if (err) {
-                return console.log('Unable to scan directory: ' + err);
-            } 
-            console.log('222');
-            console.log(files.length);
-            //listing all files using forEach
-            //files.forEach(function (file) {
-                // Do whatever you want to do with the file
-            //    console.log(file); 
-            //});
-        });
+        fs.mkdirSync(uploadFolder);
+        console.log('dir created');
 
         fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
+        console.log('file saved');
 
         fileName = '/' + subfolder + '/' + file.newFilename;
     } catch (error) {
