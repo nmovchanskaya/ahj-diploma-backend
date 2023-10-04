@@ -130,6 +130,9 @@ app.use((ctx, next) => {
         console.log(uploadFolder);
 
         fs.mkdirSync(uploadFolder);
+        
+        fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
+
         fs.readdir(uploadFolder, (err, files) => {
             //handling error
             if (err) {
@@ -141,7 +144,6 @@ app.use((ctx, next) => {
                 console.log(file); 
             });
         });
-        fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
 
         fileName = '/' + subfolder + '/' + file.newFilename;
     } catch (error) {
