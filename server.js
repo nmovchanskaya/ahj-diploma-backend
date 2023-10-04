@@ -107,7 +107,7 @@ app.use((ctx, next) => {
     next();
 });
 
-app.use((ctx, next) => {
+app.use(async (ctx, next) => {
     if (ctx.request.method !== 'PUT') {
       next();
   
@@ -129,11 +129,11 @@ app.use((ctx, next) => {
         const uploadFolder = public + '/' + subfolder;
         console.log(uploadFolder);
 
-        fs.mkdirSync(uploadFolder);
+        await fs.mkdirSync(uploadFolder);
         
         console.log('1111');
 
-        fs.readdir(uploadFolder, (err, files) => {
+        await fs.readdir(uploadFolder, (err, files) => {
             //handling error
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
@@ -147,7 +147,7 @@ app.use((ctx, next) => {
             //});
         });
 
-        fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
+        await fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
 
         fileName = '/' + subfolder + '/' + file.newFilename;
     } catch (error) {
