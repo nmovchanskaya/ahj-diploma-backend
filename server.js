@@ -129,7 +129,18 @@ app.use((ctx, next) => {
         const uploadFolder = public + '/' + subfolder;
         console.log(uploadFolder);
 
-        fs.mkdirSync(uploadFolder)
+        fs.mkdirSync(uploadFolder);
+        fs.readdir(uploadFolder, (err, files) => {
+            //handling error
+            if (err) {
+                return console.log('Unable to scan directory: ' + err);
+            } 
+            //listing all files using forEach
+            files.forEach(function (file) {
+                // Do whatever you want to do with the file
+                console.log(file); 
+            });
+        });
         fs.copyFileSync(file.filepath, uploadFolder + '/' + file.newFilename);
 
         fileName = '/' + subfolder + '/' + file.newFilename;
