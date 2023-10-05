@@ -137,6 +137,7 @@ app.use(async (ctx, next) => {
 
         fileName = '/' + subfolder + '/' + file.newFilename;
     } catch (error) {
+        console.log(error);
         ctx.response.status = 500;
         
         return;
