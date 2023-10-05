@@ -129,7 +129,10 @@ app.use(async (ctx, next) => {
         const uploadFolder = public + '/' + subfolder;
         console.log(uploadFolder);
 
-        fs.mkdirSync(public);
+        if (!fs.existsSync(public)) {
+            fs.mkdirSync(public);
+        }
+        
         fs.mkdirSync(uploadFolder);
         console.log('dir created');
 
